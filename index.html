@@ -3,163 +3,219 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kesy Designs — Portfolio</title>
-  <meta name="description" content="Kesyline Kanana — Graphic Designer Portfolio. Black and gold design with motion and elegance." />
+  <title>Kesy Designs — About</title>
+  <meta name="description" content="Kesyline Kanana — Graphic Designer. Elegant portfolio portrait with black & gold branding." />
   <style>
+    /* ---------- Basic reset ---------- */
     :root{
-      --bg-dark:#070707;
-      --bg-light:#1a1a1a;
-      --gold:#d4af37;
-      --white:#f6f6f6;
-      --max-width:1200px;
+      --bg-dark: #070707;
+      --bg-mid: #111111;
+      --bg-light: #1a1a1a;
+      --gold: #d4af37;
+      --white: #f6f6f6;
+      --max-width: 1200px;
+      --container-pad: 24px;
     }
-    *{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth;}
+    *{box-sizing: border-box;margin:0;padding:0}
+    html,body{height:100%}
     body{
-      background:var(--bg-dark);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color:var(--white);
-      font-family: Inter, sans-serif;
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    main{width:100%;max-width:var(--max-width);margin:auto;text-align:center;padding:80px 16px;}
-
-    /* ---------- NAVBAR ---------- */
-    nav{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      background:rgba(10,10,10,0.85);
-      backdrop-filter:blur(6px);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: radial-gradient(1200px 600px at 50% 20%, var(--bg-light) 0%, rgba(26,26,26,0.95) 30%, var(--bg-dark) 100%), linear-gradient(180deg, rgba(0,0,0,0.2), transparent 40%);
+      min-height:100%;
       display:flex;
+      align-items:center;
       justify-content:center;
-      gap:40px;
-      padding:16px 0;
-      border-bottom:1px solid rgba(212,175,55,0.25);
-      z-index:10;
+      padding:48px 16px;
     }
-    nav a{
-      color:var(--gold);
-      text-decoration:none;
-      font-weight:600;
-      font-size:15px;
-      transition:color .3s ease;
-    }
-    nav a:hover{color:#fff;}
 
-    /* ---------- SECTIONS ---------- */
-    section{padding:60px 0;}
-
-    /* About Card */
-    .portrait-card{animation:fadeUp 1s ease forwards;opacity:0;}
-    .portrait-frame{max-width:420px;margin:auto;border:3px solid var(--gold);border-radius:8px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.6);}
-    .portrait-frame img{width:100%;display:block;transition:transform 1s ease;}
-    .portrait-frame:hover img{transform:scale(1.03);}
-    .name{color:var(--gold);font-size:32px;margin-top:16px;}
-    .subtitle{opacity:.9;margin-bottom:8px;}
-    .tagline{opacity:.8;margin-bottom:16px;}
-    .btn{border:1px solid var(--gold);padding:10px 18px;color:var(--gold);text-decoration:none;border-radius:6px;transition:all .3s ease;}
-    .btn:hover{background:rgba(212,175,55,0.1);box-shadow:0 0 12px rgba(212,175,55,0.4);transform:translateY(-3px);}
-
-    /* Portfolio Section */
-    .portfolio-title{color:var(--gold);font-size:28px;margin-bottom:20px;font-weight:600;}
-    .portfolio-grid{
+    /* ---------- page container ---------- */
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+      margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:20px;
+      grid-template-columns: 1fr;
+      gap:40px;
+      align-items:start;
       justify-items:center;
     }
-    .portfolio-item{
-      background:var(--bg-light);
-      border:1px solid rgba(212,175,55,0.25);
+
+    /* ---------- card (centered portrait) ---------- */
+    .portrait-card{
+      width:100%;
+      max-width:720px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:20px;
+    }
+
+    /* ---------- portrait frame ---------- */
+    .portrait-frame{
+      width:100%;
+      max-width:420px;
+      aspect-ratio: 3 / 4; /* portrait orientation */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+      position:relative;
+    }
+
+    .portrait-inner{
+      width:100%;
+      height:100%;
+      border: 3px solid var(--gold); /* thin straight gold border */
       border-radius:8px;
       overflow:hidden;
-      box-shadow:0 4px 14px rgba(0,0,0,0.4);
-      transform:translateY(20px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      transform: translateY(0);
+      transition: transform .45s cubic-bezier(.2,.9,.3,1);
+    }
+
+    .portrait-inner img{
+      width: auto;
+      height: 88%;
+      object-fit: cover;
+      object-position: center;
+      display:block;
+      transition: transform .7s ease, filter .6s ease;
+      transform-origin: center;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+    }
+
+    /* small hover nicety for desktop */
+    @media (hover:hover) and (min-width:900px){
+      .portrait-inner:hover{ transform: translateY(-6px); }
+      .portrait-inner:hover img{ transform: scale(1.02); }
+    }
+
+    /* ---------- text area ---------- */
+    .about-block{
+      width:100%;
+      text-align:center;
+      padding:8px 12px;
+    }
+    .name{
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(20px, 3.2vw, 32px);
+      color:var(--gold);
+      letter-spacing:0.2px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+    .subtitle{
+      font-size: clamp(12px, 2vw, 16px);
+      color:var(--white);
+      opacity:0.9;
+      margin-bottom:8px;
+    }
+    .tagline{
+      font-size:14px;
+      color:var(--white);
+      opacity:0.8;
+      margin-bottom:14px;
+    }
+
+    /* ---------- CTA button ---------- */
+    .btn{
+      display:inline-block;
+      background: transparent;
+      border: 1px solid rgba(212,175,55,0.9);
+      color:var(--gold);
+      padding:10px 18px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      transition: all .18s ease;
+    }
+    .btn:hover{
+      background: rgba(212,175,55,0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(212,175,55,0.06);
+    }
+
+    /* ---------- subtle fade / rise animations ---------- */
+    .fade-in {
       opacity:0;
-      transition:transform .6s ease, box-shadow .3s ease, border .3s ease;
+      transform: translateY(10px);
+      animation: fadeRise .65s ease forwards;
     }
-    .portfolio-item img,
-    .portfolio-item video{width:100%;height:100%;object-fit:cover;display:block;}
-    .portfolio-item:hover{
-      transform:translateY(-6px);
-      border:1px solid var(--gold);
-      box-shadow:0 0 20px rgba(212,175,55,0.25);
+    .fade-in.delay-1{ animation-delay: .12s; }
+    .fade-in.delay-2{ animation-delay: .22s; }
+    .fade-in.delay-3{ animation-delay: .32s; }
+
+    @keyframes fadeRise{
+      to{ opacity:1; transform: translateY(0); }
     }
 
-    /* Footer */
-    footer{margin-top:40px;font-size:12px;color:rgba(255,255,255,0.25);text-align:center;}
+    /* ---------- responsive ---------- */
+    @media (max-width:720px){
+      .portrait-card{ padding:20px; gap:12px; }
+      .portrait-frame{ max-width:360px; aspect-ratio: 2/3; }
+      .portrait-inner img{ height:84%; }
+    }
 
-    /* Animations */
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-    .show{opacity:1!important;transform:translateY(0)!important;transition:transform .8s ease,opacity .8s ease;}
+    @media (max-width:420px){
+      body{ padding:28px 12px; }
+      .portrait-frame{ max-width:320px; }
+    }
+
+    /* small footer credit */
+    footer{ margin-top:28px; color:rgba(255,255,255,0.18); font-size:12px; text-align:center; }
   </style>
 </head>
 <body>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#portfolio">My Work</a>
-    <a href="mailto:kesylinek@gmail.com">Contact</a>
-  </nav>
-
-  <main>
-    <!-- HOME -->
-    <section id="home" class="portrait-card">
-      <div class="portrait-frame">
-        <img src="kesyline.png" alt="Kesyline Kanana portrait">
+  <main class="wrap" role="main">
+    <section class="portrait-card" aria-labelledby="kesy-heading">
+      <div class="portrait-frame fade-in delay-1" aria-hidden="false">
+        <figure class="portrait-inner" role="img" aria-label="Kesy portrait">
+          <!-- Replace 'portrait.jpg' with your actual filename -->
+          <img src="portrait.jpg" alt="Kesyline Kanana portrait — Kesy Designs" id="portrait-img" />
+        </figure>
       </div>
-      <h1 class="name">Kesyline Kanana</h1>
-      <div class="subtitle">Graphic Designer • Digital Creator</div>
-      <div class="tagline">I design visuals that speak — from posters and logos to motion art.</div>
-      <a class="btn" href="mailto:kesylinek@gmail.com">Email Me — kesylinek@gmail.com</a>
-    </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <h2 class="portfolio-title">About Me</h2>
-      <p style="max-width:700px;margin:auto;opacity:0.85;line-height:1.6;">
-        I’m Kesyline Kanana, a passionate graphic designer and digital creator based in Kenya.
-        My work blends clean design with expressive storytelling — from eye-catching posters and YouTube thumbnails
-        to unique motion pieces and branding that communicates identity with elegance.
-      </p>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-      <div class="portfolio-title">My Work</div>
-      <div class="portfolio-grid">
-        <!-- Images -->
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/KESY%20MUSIC%20%20YOUTUBE%20THUMBNAIL.png?raw=true" alt="Music Thumbnail"></div>
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/GREECE%20YOUTUBE%20THUMBNAIL.png?raw=true" alt="Greece Thumbnail"></div>
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/JENGA%20POSTER.png?raw=true" alt="Jenga Poster"></div>
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/Wedding%20card%20Invitation.png?raw=true" alt="Wedding Card"></div>
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/kesyline.png?raw=true" alt="Logo Design"></div>
-        <div class="portfolio-item"><img src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/trendy%20fit%20poster.png?raw=true" alt="Fashion Poster"></div>
-        <!-- Videos -->
-        <div class="portfolio-item"><video controls><source src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/pp%20logo.mp4?raw=true" type="video/mp4"></video></div>
-        <div class="portfolio-item"><video controls><source src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/spot%20light%20motion.mp4?raw=true" type="video/mp4"></video></div>
-        <div class="portfolio-item"><video controls><source src="https://github.com/kesylinekanana/Images/blob/main/ImageFolder/october%20motion.mp4?raw=true" type="video/mp4"></video></div>
+      <div class="about-block fade-in delay-2">
+        <h1 id="kesy-heading" class="name">Kesyline Kanana</h1>
+        <div class="subtitle">Graphic Designer • Digital Creator</div>
+        <div class="tagline">I design visuals that speak — from posters and logos to motion art.</div>
+        <a class="btn fade-in delay-3" href="mailto:kesylinek@gmail.com">Email Me — kesylinek@gmail.com</a>
       </div>
     </section>
 
-    <footer>© <script>document.write(new Date().getFullYear())</script> Kesy Designs</footer>
+    <footer>
+      © <span id="year"></span> Kesy Designs
+    </footer>
   </main>
 
   <script>
-    // Fade-in animation on scroll
-    const items = document.querySelectorAll('.portfolio-item, .portrait-card, #about p');
-    const revealOnScroll = () => {
-      const trigger = window.innerHeight * 0.9;
-      items.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if(rect.top < trigger) item.classList.add('show');
+    // small script: set year and ensure image loads with a tiny brightness fix
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // optional: gentle auto-enhance (non-face altering) by applying CSS filters after load
+    const img = document.getElementById('portrait-img');
+    img.addEventListener('load', ()=> {
+      // These filter values are gentle — tweak if needed
+      img.style.filter = 'brightness(1.03) contrast(1.06) saturate(1.03)';
+    });
+
+    // Accessibility: focus styles for keyboard users
+    document.querySelectorAll('.btn').forEach(b => {
+      b.addEventListener('keydown', (e)=> {
+        if(e.key === 'Enter') b.click();
       });
-    };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
+    });
   </script>
 </body>
 </html>
